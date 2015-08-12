@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-localstorage/iron-localstorage.html">
 <script src="../../bower_components/node-uuid/uuid.js"></script>
+<script src="//crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
 <!--
 An element providing a solution to no problem in particular.
 
@@ -34,8 +35,9 @@ Example:
     <iron-localstorage 
       name="labs_Profile" 
       value="{{userid}}"
-      on-iron-localstorage-load-empty="createUser" 
+      on-iron-localstorage-load-empty="fireEmpty" 
       ></iron-localstorage>
+
   </template>
 
 </dom-module>
@@ -57,6 +59,13 @@ Example:
         observer: "_userid",
         notify: true
       },
+
+      pincode: {
+        type: Number,
+        notify: true
+      },
+
+
 
       /**
        * If we have a user, this will give you the userobject.
@@ -111,14 +120,25 @@ Example:
      */
 
 
-
     /**
      * Fired when we can't find a user in localstorage.
      *
      */
+
+     fireEmpty: function(){
+        this.fire('no-user');
+     },
+
+     /**
+     * Create a user (needs pincode) and save encrypted in localstorage.
+     * Encryption is userid + salt (pincode).
+     * When user is created, you get on-user-created trigger.
+     */
+
     createUser: function() {
-        this.userid = uuid.v1();
-        this.userfound();
+        this.nakeduserid = uuid.v1();
+        this.userid = CryptoJS.AES.encrypt(nakeduserid, pincode);
+        this.fire('user-created');
     },
 
     /**
