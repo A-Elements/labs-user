@@ -173,7 +173,7 @@ Example:
      */
     userfound: function() {
       var pincode = this.pincode;
-      var decrypted = CryptoJS.AES.decrypt(this.userid, pincode);
+      var decrypted = CryptoJS.AES.decrypt(this.nakeduserid, pincode);
       console.log("Decrypted user: ", decrypted);
       this.nakeduserid = decrypted;
       this.fire('user-found', {detail: this.nakeduserid});
