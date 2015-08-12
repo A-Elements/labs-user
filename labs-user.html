@@ -34,7 +34,7 @@ Example:
     
     <iron-localstorage 
       name="labs_Profile" 
-      value="{{userid}}"
+      value="{{encruserid}}"
       on-iron-localstorage-load-empty="fireEmpty" 
       ></iron-localstorage>
 
@@ -138,8 +138,9 @@ Example:
     createUser: function() {
         var nakeduserid = uuid.v1();
         var pincode = this.pincode.toString();
+        this.userid = nakeduserid;
         var tmpuserid = CryptoJS.AES.encrypt(nakeduserid, pincode);
-        this.userid = tmpuserid.toString();
+        this.encruserid = tmpuserid.toString();
         this.fire('user-created');
     },
 
