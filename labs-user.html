@@ -144,10 +144,11 @@ Example:
     createUser: function() {
         var nakeduserid = uuid.v1();
         var pincode = this.pincode.toString();
-        this.userid = nakeduserid;
+        this.nakeduserid = nakeduserid;
         var tmpuserid = CryptoJS.AES.encrypt(nakeduserid, pincode);
         this.encruserid = tmpuserid.toString();
         this.fire('user-created');
+        this.userfound();
     },
 
     /**
