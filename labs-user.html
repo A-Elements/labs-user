@@ -62,7 +62,8 @@ Example:
 
       pincode: {
         type: Number,
-        notify: true
+        notify: true,
+        observer: '_logPincode'
       },
 
       nakeduserid: {
@@ -160,6 +161,10 @@ Example:
         }
     },
 
+
+    _logPincode: function(){
+      console.log('labs-user found pincode; ', this.pincode);
+    },
 
 
     /**
