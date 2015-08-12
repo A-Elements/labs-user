@@ -175,7 +175,8 @@ Example:
       var pincode = this.pincode;
       var decrypted = CryptoJS.AES.decrypt(this.nakeduserid, pincode);
       console.log("Decrypted user: ", decrypted);
-      this.nakeduserid = decrypted;
+      var decrtostring = decrypted.toString(CryptoJS.enc.Utf8);
+      this.nakeduserid = decrtostring;
       this.fire('user-found', {detail: this.nakeduserid});
     }
 
