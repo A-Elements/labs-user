@@ -67,7 +67,6 @@ Example:
 
       nakeduserid: {
         type: String,
-        observer: "_nakeduserid",
         notify: true
       },
 
@@ -168,7 +167,7 @@ Example:
      * 
      */
     userfound: function() {
-      var pincode = this.pincode.toString();
+      var pincode = this.pincode;
       var decrypted = CryptoJS.AES.decrypt(this.userid, pincode);
       console.log("Decrypted user: ", decrypted);
       this.nakeduserid = decrypted;
