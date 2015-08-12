@@ -65,6 +65,12 @@ Example:
         notify: true
       },
 
+      nakeduserid: {
+        type: String,
+        observer: "_nakeduserid",
+        notify: true
+      },
+
 
 
       /**
@@ -161,7 +167,11 @@ Example:
      * 
      */
     userfound: function() {
-      this.fire('user-found', {detail: this.userid});
+      var pincode = this.pincode.toString();
+      var decrypted = CryptoJS.AES.decrypt(this.userid, pincode);
+      console.log("Decrypted user: ", decrypted);
+      this.nakeduserid = decrypted;
+      this.fire('user-found', {detail: this.nakeduserid});
     }
 
   });
