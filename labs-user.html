@@ -138,7 +138,7 @@ Example:
     createUser: function() {
         var nakeduserid = uuid.v1();
         var pincode = this.pincode.toString();
-        this.tmpuserid = CryptoJS.AES.encrypt(nakeduserid, pincode);
+        var tmpuserid = CryptoJS.AES.encrypt(nakeduserid, pincode);
         this.userid = tmpuserid.toString();
         this.fire('user-created');
     },
