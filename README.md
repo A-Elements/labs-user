@@ -1,6 +1,6 @@
 # labs-user
 
-An element providing a starting point for your own reusable Polymer elements.
+Labs-user checks localstorage to find a uuid. If it can't find it, it will create a user.
 
 
 ## Dependencies
